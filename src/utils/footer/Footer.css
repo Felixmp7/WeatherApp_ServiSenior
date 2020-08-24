@@ -1,0 +1,8 @@
+.containerFooter {
+  width: 50%;
+  height: 10vh;
+  border-radius: 1px;
+  background-color: #f0f8ffee;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, .4);
+  margin-top: 20px;
+}
