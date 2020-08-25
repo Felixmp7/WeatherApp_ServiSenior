@@ -15,8 +15,8 @@ const NextWeathersContainer = ({nextDaysWeatherData}) => {
             return (
               <NextWeather
                 key={index}
-                weatherIcon={weather.weatherIcon}
-                day={weather.day}
+                weatherIcon={weather.weather}
+                day={weather.date}
               />
             );
           })
