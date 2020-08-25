@@ -1,82 +1,56 @@
 import { GET_WEATHER_DATA } from "../constants/index";
 import { getWeatherData } from "../api/api";
-import {createAction} from 'redux-actions'
+// import {createAction} from 'redux-actions'
 
-// export const fetchWeatherData = () => {
+const transformAPIData = (apiData) => {
+  const nextWeatherData = apiData.list.map((element) => {
+    return {
+      date: element.dt_txt,
+      cityName: "Santiago",
+      complementName: "Metropolitan Region",
+      weather: element.weather[0].main,
+      topTemperature: element.main.temp_max,
+      bottomTemperature: element.main.temp_min,
+      wind: element.wind.speed,
+      humidity: element.main.humidity,
+    };
+  });
 
-//   // try {
-//     // const response = await getWeatherData();
-//     // console.log(response);
-//     // if (response === "SUCCESS") {
-//       return ({
-//         type: GET_WEATHER_DATA,
-//         payload: null,
-//       });
-//     // }
-//   // } catch (error) {
-//   //   console.log(error); 
-//   // }
-// }
+  const currentWeather = {
+    date: nextWeatherData[0].date,
+    cityName: "Santiago",
+    complementName: "Metropolitan Region",
+    weather: nextWeatherData[0].weather,
+    topTemperature: nextWeatherData[0].topTemperature,
+    bottomTemperature: nextWeatherData[0].bottomTemperature,
+    wind: nextWeatherData[0].wind,
+    humidity: nextWeatherData[0].humidity,
+  };
 
-const weatherData = {
-  nextWeatherData: [
-    {
-      day: "Monday",
-      humidity: "30000001",
-      weather: "30000001",
-      cityName: "Pablo Alborán",
-      temperature: 30,
-      wind: "m",
-      weatherIcon: "Clouds",
-    },
-    {
-      day: "Tuesday",
-      humidity: "500000",
-      weather: "500000",
-      cityName: "José Enrique",
-      temperature: 40,
-      wind: "m",
-      weatherIcon: "Clear",
-    },
-    {
-      day: "Wednesday",
-      weather: "6868686",
-      cityName: "Gabriel Pacheco",
-      temperature: 10,
-      wind: "m",
-      weatherIcon: "Thunderstorm",
-      humidity: "XSCfaW5",
-    },
-    {
-      day: "Thursday",
-      cityName: "Doris Alonso",
-      weather: "99999",
-      temperature: 11,
-      wind: "w",
-      weatherIcon: "Rain",
-      humidity: "kxmVQVd",
-    },
-    {
-      day: "Friday",
-      cityName: "Doris Alonso",
-      weather: "99999",
-      temperature: 11,
-      wind: "w",
-      weatherIcon: "Snow",
-      humidity: "kxmVQVd",
-    },
-  ],
-  currentWeather: {
-    cityName: "Manuel Carrero",
-    weather: "99999",
-    temperature: 11,
-    wind: "m",
-    weatherIcon: "Clear",
-    humidity: "kxmVQVd",
-  },
+  return { currentWeather, nextWeatherData };
 };
 
-export const fetchWeatherData = createAction(
-  GET_WEATHER_DATA,
-  () => weatherData
-);
+const fetchWeatherDataToApi = async () => {
+
+  try {
+    const response = await getWeatherData();
+    console.log(response);
+    if (response.status) {
+      return response.data;
+    }
+  } catch (error) {
+    console.log(error); 
+  }
+}
+
+
+export const fetchWeatherData = () => {
+  return async (dispatch) => {
+    const data = await fetchWeatherDataToApi();
+    console.log(data)
+    dispatch({
+      type: GET_WEATHER_DATA,
+      payload: transformAPIData(data),
+    });
+  }
+}
