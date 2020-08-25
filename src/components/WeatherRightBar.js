@@ -3,11 +3,21 @@ import PropTypes from 'prop-types'
 import './WeatherRightBar.css'
 import Icon from "@mdi/react";
 import { getIcon } from "../helpers/getIcon";
-import { mdiArrowDown, mdiArrowUp } from "@mdi/js";
+import {
+  mdiArrowDown,
+  mdiArrowUp,
+  mdiWaterPercent,
+  mdiFlagVariantOutline,
+} from "@mdi/js";
 
 
-const WeatherRightBar = ({icon}) => {
-
+const WeatherRightBar = ({
+  icon,
+  topTemperature,
+  bottomTemperature,
+  humidity,
+  wind,
+}) => {
   const renderWeatherIcon = (iconParam) => {
     const { iconPath, color } = getIcon(iconParam);
     return (
@@ -18,21 +28,33 @@ const WeatherRightBar = ({icon}) => {
   };
   return (
     <div className="rightBarContainer">
-      {
-        renderWeatherIcon("Clear")
-      }
+      {renderWeatherIcon(icon)}
       <div className="containerTemperature">
-        <h6 className="temperature">32° C</h6>
-        <Icon path={mdiArrowUp} title="icon" size={1} color='#db6b6b' />
+        <h6 className="temperature">{`${topTemperature}° C`}</h6>
+        <Icon path={mdiArrowUp} title="icon" size={1} color="#db6b6b" />
       </div>
       <div className="containerTemperature">
-        <h6 className="temperature">29° C</h6>
-        <Icon path={mdiArrowDown} title="icon" size={1} color='#799ed0' />
+        <h6 className="temperature">{`${bottomTemperature}° C`}</h6>
+        <Icon path={mdiArrowDown} title="icon" size={1} color="#799ed0" />
       </div>
-      <div className="humidityAndWind">1.2</div>
+      <div className="humidityAndWind">
+        <div className="containerIconAndText">
+          <span className="leftText">{`${humidity}%`}</span>
+          <Icon path={mdiWaterPercent} title="icon" size={0.8} color="#aaa" />
+        </div>
+        <div className="containerIconAndText">
+          <span className="leftText">{`${wind} km/h`}</span>
+          <Icon
+            path={mdiFlagVariantOutline}
+            title="icon"
+            size={0.8}
+            color="#aaa"
+          />
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 WeatherRightBar.propTypes = {
 
