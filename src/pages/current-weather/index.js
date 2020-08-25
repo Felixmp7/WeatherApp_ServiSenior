@@ -16,20 +16,13 @@ class CurrentWeather extends Component {
   };
 
   componentDidMount(){
-    console.log('Fetch')
+    // console.log('Fetch')
     this.props.fetchWeatherData();
   }
 
   componentDidUpdate(prevProps){
-    if (this.props.currentWeather !== prevProps.currentWeather && this.props.currentWeather) {
-      this.setState({
-        dataLoaded: true
-      })
-      // console.log('nada')
-
-    } else {
-      console.log("Caso 2");
-
+    if (this.props.dataLoaded !== prevProps.dataLoaded && this.props.dataLoaded) {
+      this.setState({dataLoaded: true})
     }
   }
 
@@ -112,7 +105,8 @@ const mapDispatch = dispatch => ({
 
 const mapState = ({ weatherData }) => ({
   currentWeather: getCurrentWeather(weatherData),
-  // nextWeatherData: getNextWeatherData(weatherData),
+  nextWeatherData: getNextWeatherData(weatherData),
+  dataLoaded: weatherData.dataLoaded,
 });
 
 export default connect(mapState, mapDispatch)(CurrentWeather);
