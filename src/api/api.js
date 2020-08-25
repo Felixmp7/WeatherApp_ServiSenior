@@ -1,7 +1,7 @@
 export const getWeatherData = async () => {
-  const APIKEY = "524901&APPID=b1d5e046b7852c66118ce2f01138274c";
+  const APIKEY = "b1d5e046b7852c66118ce2f01138274c";
 
-  const url = `http://api.openweathermap.org/data/2.5/forecast?id=${APIKEY}`;
+  const url = `http://api.openweathermap.org/data/2.5/forecast?q=Santiago&units=metric&appid=${APIKEY}`;
   let response;
 
   try {
@@ -9,8 +9,13 @@ export const getWeatherData = async () => {
     // console.log(serverResponse)
 
     if (serverResponse.status !== 404) {
-      response = "SUCCESS";
-      // return serverResponse.json()
+      // const data = transformAPIData(serverResponse.json())
+      response = {
+        status: "SUCCESS",
+        data: serverResponse.json(),
+      };
+      
+      return response;
     } else response = `FAIL`;
 
     return response;
