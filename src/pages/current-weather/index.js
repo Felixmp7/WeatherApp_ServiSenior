@@ -7,10 +7,12 @@ import { fetchWeatherData } from '../../actions/index';
 import './index.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { getCurrentWeather, getNextWeatherData } from '../../selectors/getWeather'
+import Skeleton from "@material-ui/lab/Skeleton";
 
 class CurrentWeather extends Component {
   state = {
-
+    dataLoaded: false
   };
 
   componentDidMount(){
@@ -18,21 +20,80 @@ class CurrentWeather extends Component {
     this.props.fetchWeatherData();
   }
 
+  componentDidUpdate(prevProps){
+    if (this.props.currentWeather !== prevProps.currentWeather && this.props.currentWeather) {
+      this.setState({
+        dataLoaded: true
+      })
+      // console.log('nada')
+
+    } else {
+      console.log("Caso 2");
+
+    }
+  }
+
   render() {
-    return (
+    const { 
+      date,
+      cityName,
+      complementName,
+      weather,
+      topTemperature,
+      bottomTemperature,
+      wind,
+      humidity
+    } = this.props.currentWeather;
+
+    const { dataLoaded } = this.state;
+
+    if (!dataLoaded) {
+      return (
+        <div className="currentWeatherPage">
+          <WeatherContainer>
+            <div className="gridSkeleton">
+              <Skeleton variant="rect" width={"70%"} height={"80%"} />
+              <Skeleton variant="rect" width={"20%"} height={"80%"} />
+            </div>
+            <div className="nextSkeleton">
+              <div className="headerSkeleton">
+                <Skeleton variant="text" height={70} />
+              </div>
+            </div>
+            <Skeleton variant="rect" width={'100%'} height={'20%'} />
+          </WeatherContainer>
+        </div>
+      );
+    } else {
+      return (
       <div className="currentWeatherPage">
         <WeatherContainer>
           <div className="gridAlignment">
-            <Weather />
-            <WeatherRightBar />
+            <Weather
+              date={date}
+              cityName={cityName}
+              complementName={complementName}
+            />
+            <WeatherRightBar
+              icon={weather}
+              topTemperature={topTemperature}
+              bottomTemperature={bottomTemperature}
+              wind={wind}
+              humidity={humidity}
+            />
           </div>
           <div className="nextDaysContainer">
             <h3 className="headerText">Next days weather</h3>
           </div>
-          <NextWeathersContainer nextDaysWeatherData={this.props.nextWeatherData} />
+          <NextWeathersContainer
+            nextDaysWeatherData={this.props.nextWeatherData}
+          />
         </WeatherContainer>
       </div>
     );
+    }
+    
+    
   }
 };
 
@@ -49,9 +110,9 @@ const mapDispatch = dispatch => ({
   fetchWeatherData: () => dispatch(fetchWeatherData())
 })
 
-const mapState = (state) => ({
-  currentWeather: state.currentWeather,
-  nextWeatherData: state.nextWeatherData,
+const mapState = ({ weatherData }) => ({
+  currentWeather: getCurrentWeather(weatherData),
+  // nextWeatherData: getNextWeatherData(weatherData),
 });
 
 export default connect(mapState, mapDispatch)(CurrentWeather);
