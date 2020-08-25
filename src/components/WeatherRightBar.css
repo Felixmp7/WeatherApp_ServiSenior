@@ -1,0 +1,44 @@
+.rightBarContainer {
+  /* border: 2px solid; */
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.weatherIcon {
+  border-bottom: 1.5px solid #aaaaaa44;
+  padding-bottom: 10px;
+
+}
+.containerTemperature {
+  border-bottom: 1.5px solid #aaaaaa44;
+  padding-bottom: 5px;
+  /* width: 50%; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.temperature {
+  /* border: 2px solid; */
+  font-size: 18px;
+  font-weight: 400;
+  color: #444;
+  margin-right: 15px;
+}
+
+.top {
+  color: #db6b6b;
+  
+}
+
+.bottom {
+  color: #799ed0;
+}
+.humidityAndWind {
+  /* border: 2px solid; */
+  font-size: 14px;
+}
