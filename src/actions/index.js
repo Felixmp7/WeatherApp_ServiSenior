@@ -1,23 +1,42 @@
 import { GET_WEATHER_DATA } from "../constants/index";
 import { getWeatherData } from "../api/api";
-// import {createAction} from 'redux-actions'
+import moment from 'moment'
 
 const transformAPIData = (apiData) => {
+
+  const currentDay = moment().day();
+
+  
   const nextWeatherData = apiData.list.map((element) => {
-    return {
-      date: element.dt_txt,
+    const date = element.dt_txt.slice(0,10)
+    const day = moment(date).format('dddd');
+    const dayNumber = moment(date).day();
+
+    const weatherData = {
+      date: day,
+      dayNumber,
       cityName: "Santiago",
       complementName: "Metropolitan Region",
       weather: element.weather[0].main,
       topTemperature: element.main.temp_max,
       bottomTemperature: element.main.temp_min,
       wind: element.wind.speed,
-      humidity: element.main.humidity,
+      humidity: element.main.humidity
     };
+
+      return weatherData;
   });
 
+  const todayVariationTemp = nextWeatherData.filter( item => {
+    if (item.dayNumber === currentDay) return item;
+  })
+
+  const temperatureVariation = groupBy(nextWeatherData, 'date');
+  // console.log(temperatureVariation)
+
+
   const currentWeather = {
-    date: nextWeatherData[0].date,
+    date: "Today",
     cityName: "Santiago",
     complementName: "Metropolitan Region",
     weather: nextWeatherData[0].weather,
@@ -27,14 +46,32 @@ const transformAPIData = (apiData) => {
     humidity: nextWeatherData[0].humidity,
   };
 
-  return { currentWeather, nextWeatherData };
+  return {
+    currentWeather: {
+      ...currentWeather,
+      tempVariaton: [...todayVariationTemp],
+    },
+    nextWeatherData: temperatureVariation
+  };
+};
+
+const groupBy = (array, key) => {
+  // Return the end result
+  return array.reduce((result, currentValue) => {
+    // If an array already present for key, push it to the array. Else create an array and push the object
+    (result[currentValue[key]] = result[currentValue[key]] || []).push(
+      currentValue
+    );
+    // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
+    return result;
+  }, {}); // empty object is the initial value for result object
 };
 
 const fetchWeatherDataToApi = async () => {
 
   try {
     const response = await getWeatherData();
-    console.log(response);
+    // console.log(response);
     if (response.status) {
       return response.data;
     }
@@ -47,7 +84,6 @@ const fetchWeatherDataToApi = async () => {
 export const fetchWeatherData = () => {
   return async (dispatch) => {
     const data = await fetchWeatherDataToApi();
-    console.log(data)
     dispatch({
       type: GET_WEATHER_DATA,
       payload: transformAPIData(data),
