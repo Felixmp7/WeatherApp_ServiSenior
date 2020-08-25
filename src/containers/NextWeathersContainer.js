@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import NextWeather from '../components/NextWeather';
+import NextDaySimpleWeather from '../components/NextWeather';
 
 const NextWeathersContainer = ({nextDaysWeatherData}) => {
   const classes = useStyles();
@@ -11,12 +11,12 @@ const NextWeathersContainer = ({nextDaysWeatherData}) => {
     <Paper className={classes.root}>
       <Grid container className={classes.container} spacing={2}>
         {
-          nextDaysWeatherData.map( (weather, index) => {
+          nextDaysWeatherData.map( (day, index) => {
             return (
-              <NextWeather
+              <NextDaySimpleWeather
                 key={index}
-                weatherIcon={weather.weather}
-                day={weather.date}
+                weatherIcon={day[4].weather}
+                day={day[4].date}
               />
             );
           })
