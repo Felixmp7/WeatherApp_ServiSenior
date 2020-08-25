@@ -4,7 +4,11 @@ import thunk from "redux-thunk";
 // import promiseMiddleware from 'redux-promise'
 import storeReducer from "../reducers/index";
 
-const initialState = {};
+const initialState = {
+  weatherData: {
+    dataLoaded: false
+  }
+};
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
