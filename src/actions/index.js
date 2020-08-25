@@ -31,8 +31,10 @@ const transformAPIData = (apiData) => {
     if (item.dayNumber === currentDay) return item;
   })
 
-  const temperatureVariation = groupBy(nextWeatherData, 'date');
-  // console.log(temperatureVariation)
+  const weatherGrouped = groupBy(nextWeatherData, 'date');
+  // console.log(weatherGrouped)
+  const nextWeatherDataCleaned = Object.values(weatherGrouped);
+  // console.log(nextWeatherDataCleaned)
 
 
   const currentWeather = {
@@ -51,7 +53,8 @@ const transformAPIData = (apiData) => {
       ...currentWeather,
       tempVariaton: [...todayVariationTemp],
     },
-    nextWeatherData: temperatureVariation
+    nextWeatherData: [...nextWeatherDataCleaned],
+    dataLoaded: true
   };
 };
 
