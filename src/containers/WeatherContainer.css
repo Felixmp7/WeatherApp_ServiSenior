@@ -1,0 +1,10 @@
+.weatherContainer {
+  width: 60%;
+  height: 80vh;
+  background-color: #f0f8ffee;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, .4);
+}
