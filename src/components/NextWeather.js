@@ -8,37 +8,41 @@ import Button from "@material-ui/core/Button";
 import { getIcon } from "../helpers/getIcon";
 import './NextWeather.css'
 
-const NextWeather = ({weatherIcon,day, details}) => {
-
+const NextWeather = ({ weatherIcon, day, details, hour, setCurrentView, id }) => {
   const classes = useStyles();
 
-  const renderWeatherIcon = (iconParam) => {
+  const renderWeatherButtonContent = (iconParam, title) => {
     const { iconPath, color } = getIcon(iconParam);
     return (
       <div className="nextWeatherIcon">
-        <h4 className="nextDay">{day}</h4>
+        <h4 className="nextDay">{title}</h4>
         <Icon path={iconPath} title="icon" size={1.5} color={color} />
       </div>
     );
   };
 
-  
   return (
     <Grid className={classes.container} item xs>
-      <Link
-        to={{
-          pathname: `/${day}`,
-          state: details
-        }}
-        className={classes.link}
-      >
-        <Button className={classes.day}>
-          {renderWeatherIcon(weatherIcon)}
+      {hour ? (
+        <Button className={classes.buttonSelected} onClick={() => setCurrentView(id)}>
+          {renderWeatherButtonContent(weatherIcon, hour)}
         </Button>
-      </Link>
+      ) : (
+        <Link
+          to={{
+            pathname: `/${day}`,
+            state: details,
+          }}
+          className={classes.link}
+        >
+          <Button className={classes.day}>
+            {renderWeatherButtonContent(weatherIcon, day)}
+          </Button>
+        </Link>
+      )}
     </Grid>
   );
-}
+};
 
 NextWeather.propTypes = {
 
@@ -61,6 +65,11 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     display: "flex",
   },
+  buttonSelected: {
+    '&:focus': {
+      backgroundColor: '#eaeaea'
+    }
+  }
 }));
 
 export default NextWeather;
