@@ -19,7 +19,7 @@ class CurrentWeather extends Component {
 
   render() {
     const { 
-      date,
+      day,
       cityName,
       complementName,
       weather,
@@ -54,7 +54,7 @@ class CurrentWeather extends Component {
         <WeatherContainer>
           <div className="gridAlignment">
             <Weather
-              date={date}
+              day={day}
               cityName={cityName}
               complementName={complementName}
             />
@@ -70,6 +70,7 @@ class CurrentWeather extends Component {
             <h3 className="headerText">Next days weather</h3>
           </div>
           <NextWeathersContainer
+            nextDaysWeather
             nextDaysWeatherData={this.props.nextWeatherData}
           />
         </WeatherContainer>
