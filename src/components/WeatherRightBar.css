@@ -26,7 +26,8 @@
 }
 .temperature {
   /* border: 2px solid; */
-  font-size: 18px;
+  font-size: calc(1.6vmax + 3px);
+  /* font-size: 18px; */
   font-weight: 400;
   color: #444;
   margin-right: 15px;
@@ -65,8 +66,29 @@
 }
 
 .hour {
-  font-size: 26px;
+  font-size: calc(2.4vmax + 5px);
   font-weight: 300;
   color: #444;
   border-bottom: 1.5px solid #aaaaaa44;
+}
+
+@media screen and (max-width: 576px) {
+  .leftText {
+      font-size: 10px;
+      font-weight: 300;
+      margin-right: 0px;
+  }
+  .temperature {
+    font-size: calc(1.6vmax + 1px);
+    margin-right: 5px;
+  }
+}
+
+@media screen and (max-width: 435px) {
+  .temperature {
+    font-size: 11px;
+  }
+  .hour {
+    font-size: 18px;
+  }
 }
