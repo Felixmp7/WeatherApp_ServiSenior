@@ -60,7 +60,13 @@ const WeatherRightBar = ({
 };
 
 WeatherRightBar.propTypes = {
-
-}
+  icon: PropTypes.string.isRequired,
+  topTemperature: PropTypes.string.isRequired,
+  bottomTemperature: PropTypes.string.isRequired,
+  humidity: PropTypes.string.isRequired,
+  wind: PropTypes.string.isRequired,
+  hour: PropTypes.string,
+  showTime: PropTypes.bool,
+};
 
 export default WeatherRightBar
