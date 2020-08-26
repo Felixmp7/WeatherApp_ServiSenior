@@ -8,3 +8,15 @@
   flex-direction: column;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, .4);
 }
+
+@media screen and (max-width: 1124px) {
+  .weatherContainer {
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 796px) {
+  .weatherContainer {
+    width: 100%;
+  }
+}
