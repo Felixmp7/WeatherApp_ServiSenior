@@ -46,7 +46,7 @@ const NextWeather = ({ weatherIcon, day, details, hour, setCurrentView, id }) =>
 
 NextWeather.propTypes = {
   weatherIcon: PropTypes.string.isRequired,
-  day: PropTypes.string.isRequired,
+  day: PropTypes.string,
   details: PropTypes.string,
   hour: PropTypes.string,
   setCurrentView: PropTypes.func,
