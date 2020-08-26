@@ -33,7 +33,7 @@ const transformAPIData = (apiData) => {
 
   const weatherGrouped = groupBy(nextWeatherData, 'date');
   // console.log(weatherGrouped)
-  const nextWeatherDataCleaned = Object.values(weatherGrouped);
+  const nextWeatherDataCleaned = Object.values(weatherGrouped).filter( item => item[0].dayNumber !== currentDay);
   // console.log(nextWeatherDataCleaned)
 
 
