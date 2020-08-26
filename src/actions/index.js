@@ -85,11 +85,15 @@ const fetchWeatherDataToApi = async () => {
 
 
 export const fetchWeatherData = () => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const prevState = getState();
+    if (prevState.weatherData.currentWeather) {
+      return ;
+    }
     const data = await fetchWeatherDataToApi();
     dispatch({
       type: GET_WEATHER_DATA,
       payload: transformAPIData(data),
     });
-  }
+  };
 }
