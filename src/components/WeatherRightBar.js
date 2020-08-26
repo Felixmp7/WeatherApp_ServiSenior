@@ -4,8 +4,8 @@ import './WeatherRightBar.css'
 import Icon from "@mdi/react";
 import { getIcon } from "../helpers/getIcon";
 import {
-  mdiArrowDown,
-  mdiArrowUp,
+  mdiThermometerLow,
+  mdiThermometerHigh,
   mdiWaterPercent,
   mdiFlagVariantOutline,
 } from "@mdi/js";
@@ -17,6 +17,8 @@ const WeatherRightBar = ({
   bottomTemperature,
   humidity,
   wind,
+  hour,
+  showTime
 }) => {
   const renderWeatherIcon = (iconParam) => {
     const { iconPath, color } = getIcon(iconParam);
@@ -28,14 +30,15 @@ const WeatherRightBar = ({
   };
   return (
     <div className="rightBarContainer">
+      {showTime && <span className="hour">{hour}</span>}
       {renderWeatherIcon(icon)}
       <div className="containerTemperature">
-        <h6 className="temperature">{`${topTemperature}° C`}</h6>
-        <Icon path={mdiArrowUp} title="icon" size={1} color="#db6b6b" />
+        <span className="temperature">{`${topTemperature}° C`}</span>
+        <Icon path={mdiThermometerHigh} title="icon" size={1} color="#db6b6b" />
       </div>
       <div className="containerTemperature">
-        <h6 className="temperature">{`${bottomTemperature}° C`}</h6>
-        <Icon path={mdiArrowDown} title="icon" size={1} color="#799ed0" />
+        <span className="temperature">{`${bottomTemperature}° C`}</span>
+        <Icon path={mdiThermometerLow} title="icon" size={1} color="#799ed0" />
       </div>
       <div className="humidityAndWind">
         <div className="containerIconAndText">
