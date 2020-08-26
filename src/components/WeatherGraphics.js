@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import './WeatherGraphics.css'
 
 const WeatherGraphics = props => {
@@ -10,8 +10,8 @@ const WeatherGraphics = props => {
   )
 }
 
-WeatherGraphics.propTypes = {
+// WeatherGraphics.propTypes = {
 
-}
+// }
 
 export default WeatherGraphics
