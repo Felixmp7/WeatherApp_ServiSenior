@@ -11,19 +11,10 @@ import { getCurrentWeather, getNextWeatherData } from '../../selectors/getWeathe
 import Skeleton from "@material-ui/lab/Skeleton";
 
 class CurrentWeather extends Component {
-  state = {
-    dataLoaded: false
-  };
 
   componentDidMount(){
     // console.log('Fetch')
     this.props.fetchWeatherData();
-  }
-
-  componentDidUpdate(prevProps){
-    if (this.props.dataLoaded !== prevProps.dataLoaded && this.props.dataLoaded) {
-      this.setState({dataLoaded: true})
-    }
   }
 
   render() {
@@ -38,7 +29,7 @@ class CurrentWeather extends Component {
       humidity
     } = this.props.currentWeather;
 
-    const { dataLoaded } = this.state;
+    const { dataLoaded } = this.props;
 
     if (!dataLoaded) {
       return (
