@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles";
 import Icon from "@mdi/react";
 import Grid from "@material-ui/core/Grid";
@@ -7,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import { getIcon } from "../helpers/getIcon";
 import './NextWeather.css'
 
-const NextWeather = ({weatherIcon,day}) => {
+const NextWeather = ({weatherIcon,day, details}) => {
 
   const classes = useStyles();
 
@@ -20,11 +21,21 @@ const NextWeather = ({weatherIcon,day}) => {
       </div>
     );
   };
+
+  
   return (
     <Grid className={classes.container} item xs>
-      <Button className={classes.day}>
-        {renderWeatherIcon(weatherIcon)}
-      </Button>
+      <Link
+        to={{
+          pathname: `/${day}`,
+          state: details
+        }}
+        className={classes.link}
+      >
+        <Button className={classes.day}>
+          {renderWeatherIcon(weatherIcon)}
+        </Button>
+      </Link>
     </Grid>
   );
 }
@@ -40,6 +51,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   day: {
+    height: "100%",
+    width: "100%",
+    display: "flex",
+  },
+  link: {
+    textDecoration: "none",
     height: "100%",
     width: "100%",
     display: "flex",
