@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import WeatherContainer from '../../containers/WeatherContainer';
+import NextWeathersContainer from '../../containers/NextWeathersContainer';
 import Weather from '../../components/Weather';
 import WeatherRightBar from '../../components/WeatherRightBar';
 import PropTypes from 'prop-types'
@@ -8,8 +9,9 @@ import './WeatherDetails.css'
 class WeatherDetails extends Component {
   state = {
     dataLoaded: false,
+    dayWeatherData: [],
     currentWeatherView: {
-      date: null,
+      day: null,
       cityName: null,
       complementName: null,
       weather: null,
@@ -21,7 +23,6 @@ class WeatherDetails extends Component {
   };
 
   componentDidMount() {
-    // console.log(this.props)
     this.setState(
       {
         dataLoaded: true,
@@ -31,11 +32,19 @@ class WeatherDetails extends Component {
       () => console.log(this.state)
     );
   }
+
+  setCurrentView = (id) => {
+    const {dayWeatherData} = this.state;
+    const newForecastSelected = dayWeatherData.find( forecast => forecast.id === id);
+    // console.log(newForecastSelected);
+    this.setState({currentWeatherView: newForecastSelected});
+  }
+
   render() {
     const { dataLoaded } = this.state;
     // console.log(this.state.currentWeatherView)
     const {
-      date,
+      day,
       cityName,
       complementName,
       weather,
@@ -43,6 +52,7 @@ class WeatherDetails extends Component {
       bottomTemperature,
       wind,
       humidity,
+      hour
     } = this.state.currentWeatherView;
 
     if (dataLoaded) {
@@ -51,7 +61,7 @@ class WeatherDetails extends Component {
           <WeatherContainer>
             <div className="detailsGridAlignment">
               <Weather
-                date={date}
+                day={day}
                 cityName={cityName}
                 complementName={complementName}
               />
@@ -61,8 +71,17 @@ class WeatherDetails extends Component {
                 bottomTemperature={bottomTemperature}
                 wind={wind}
                 humidity={humidity}
+                hour={hour}
+                showTime
               />
             </div>
+            <div className="nextDaysContainer">
+              <h3 className="headerText">Later on this day</h3>
+            </div>
+            <NextWeathersContainer
+              setCurrentView={this.setCurrentView}
+              nextWeathersPerHours={this.state.dayWeatherData}
+            />
           </WeatherContainer>
         </div>
       );
