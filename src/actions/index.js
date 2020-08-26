@@ -4,41 +4,47 @@ import moment from 'moment'
 
 const transformAPIData = (apiData) => {
 
-  const currentDay = moment().day();
+  const currentNumberDay = moment().day();
+  const currentDay = moment(currentNumberDay).format('dddd');
+  // console.log(currentDay);
 
   
-  const nextWeatherData = apiData.list.map((element) => {
-    const date = element.dt_txt.slice(0,10)
+  const nextWeatherData = apiData.list.map((element, index) => {
+    const date = element.dt_txt.slice(0, 10);
+    // console.log(date)
+    const hour = element.dt_txt.slice(11);
+    // console.log(hour);
+    const hourFormated = moment(hour, ["HH:mm"]).format("hh:mm A");
     const day = moment(date).format('dddd');
-    const dayNumber = moment(date).day();
 
     const weatherData = {
-      date: day,
-      dayNumber,
+      day,
+      hour: hourFormated,
       cityName: "Santiago",
       complementName: "Metropolitan Region",
       weather: element.weather[0].main,
       topTemperature: element.main.temp_max,
       bottomTemperature: element.main.temp_min,
       wind: element.wind.speed,
-      humidity: element.main.humidity
+      humidity: element.main.humidity,
+      id: index
     };
 
       return weatherData;
   });
 
   const todayVariationTemp = nextWeatherData.filter( item => {
-    if (item.dayNumber === currentDay) return item;
+    if (item.day === currentDay) return item;
   })
 
-  const weatherGrouped = groupBy(nextWeatherData, 'date');
+  const weatherGrouped = groupBy(nextWeatherData, 'day');
   // console.log(weatherGrouped)
-  const nextWeatherDataCleaned = Object.values(weatherGrouped).filter( item => item[0].dayNumber !== currentDay);
+  const nextWeatherDataCleaned = Object.values(weatherGrouped).filter( item => item[0].day !== currentDay);
   // console.log(nextWeatherDataCleaned)
 
 
   const currentWeather = {
-    date: "Today",
+    day: "Today",
     cityName: "Santiago",
     complementName: "Metropolitan Region",
     weather: nextWeatherData[0].weather,
@@ -46,6 +52,7 @@ const transformAPIData = (apiData) => {
     bottomTemperature: nextWeatherData[0].bottomTemperature,
     wind: nextWeatherData[0].wind,
     humidity: nextWeatherData[0].humidity,
+    id: nextWeatherData[0].id,
   };
 
   return {
