@@ -15,7 +15,9 @@ const Weather = ({day, cityName, complementName}) => {
 }
 
 Weather.propTypes = {
-
-}
+  day: PropTypes.string.isRequired,
+  cityName: PropTypes.string.isRequired,
+  complementName: PropTypes.string.isRequired,
+};
 
 export default Weather;
