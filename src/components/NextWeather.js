@@ -45,8 +45,13 @@ const NextWeather = ({ weatherIcon, day, details, hour, setCurrentView, id }) =>
 };
 
 NextWeather.propTypes = {
-
-}
+  weatherIcon: PropTypes.string.isRequired,
+  day: PropTypes.string.isRequired,
+  details: PropTypes.string,
+  hour: PropTypes.string,
+  setCurrentView: PropTypes.func,
+  id: PropTypes.number,
+};
 
 const useStyles = makeStyles((theme) => ({
   container: {
