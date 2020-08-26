@@ -1,0 +1,28 @@
+.detailsWeatherPage {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('../../media/backgrounds/4.jpg');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailsGridAlignment {
+  display: flex;
+  width: 100%;
+  height: 70%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gridSkeleton {
+  display: flex;
+  width: 100%;
+  height: 70%;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 2px solid; */
+}
+
