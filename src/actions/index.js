@@ -33,9 +33,7 @@ const transformAPIData = (apiData) => {
       return weatherData;
   });
 
-  const todayVariationTemp = nextWeatherData.filter( item => {
-    if (item.day === currentDay) return item;
-  })
+  const todayVariationTemp = nextWeatherData.filter( item => item.day === currentDay);
 
   const weatherGrouped = groupBy(nextWeatherData, 'day');
   // console.log(weatherGrouped)
