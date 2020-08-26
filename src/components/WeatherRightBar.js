@@ -24,7 +24,7 @@ const WeatherRightBar = ({
     const { iconPath, color } = getIcon(iconParam);
     return (
       <div className="weatherIcon">
-        <Icon path={iconPath} title="icon" size={4} color={color} />
+        <Icon path={iconPath} title="icon" size={'14vmin'} color={color} />
       </div>
     );
   };
@@ -34,11 +34,11 @@ const WeatherRightBar = ({
       {renderWeatherIcon(icon)}
       <div className="containerTemperature">
         <span className="temperature">{`${topTemperature}° C`}</span>
-        <Icon path={mdiThermometerHigh} title="icon" size={1} color="#db6b6b" />
+        <Icon path={mdiThermometerHigh} title="icon" size={'3vmax'} color="#db6b6b" />
       </div>
       <div className="containerTemperature">
         <span className="temperature">{`${bottomTemperature}° C`}</span>
-        <Icon path={mdiThermometerLow} title="icon" size={1} color="#799ed0" />
+        <Icon path={mdiThermometerLow} title="icon" size={'3vmax'} color="#799ed0" />
       </div>
       <div className="humidityAndWind">
         <div className="containerIconAndText">
