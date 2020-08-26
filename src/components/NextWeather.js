@@ -15,8 +15,8 @@ const NextWeather = ({ weatherIcon, day, details, hour, setCurrentView, id }) =>
     const { iconPath, color } = getIcon(iconParam);
     return (
       <div className="nextWeatherIcon">
-        <h4 className="nextDay">{title}</h4>
-        <Icon path={iconPath} title="icon" size={1.5} color={color} />
+        <h4 className="title">{title}</h4>
+        <Icon path={iconPath} title="icon" size={'2vmax'} color={color} />
       </div>
     );
   };
@@ -47,7 +47,7 @@ const NextWeather = ({ weatherIcon, day, details, hour, setCurrentView, id }) =>
 NextWeather.propTypes = {
   weatherIcon: PropTypes.string.isRequired,
   day: PropTypes.string,
-  details: PropTypes.string,
+  details: PropTypes.array,
   hour: PropTypes.string,
   setCurrentView: PropTypes.func,
   id: PropTypes.number,
