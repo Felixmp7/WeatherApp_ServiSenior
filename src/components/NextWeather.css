@@ -6,8 +6,9 @@
   align-items: center;
   /* border: 2px solid; */
 }
-.nextDay {
+.title {
   color: #555;
+  font-size: .9vmax;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
