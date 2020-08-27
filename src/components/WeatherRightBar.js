@@ -32,13 +32,25 @@ const WeatherRightBar = ({
     <div className="rightBarContainer">
       {showTime && <span className="hour">{hour}</span>}
       {renderWeatherIcon(icon)}
-      <div className="containerTemperature">
-        <span className="temperature">{`${topTemperature}° C`}</span>
-        <Icon path={mdiThermometerHigh} title="icon" size={'3vmax'} color="#db6b6b" />
-      </div>
-      <div className="containerTemperature">
-        <span className="temperature">{`${bottomTemperature}° C`}</span>
-        <Icon path={mdiThermometerLow} title="icon" size={'3vmax'} color="#799ed0" />
+      <div className="containerTwoTemperatures">
+        <div className="containerTemperature">
+          <span className="temperature">{`${topTemperature}° C`}</span>
+          <Icon
+            path={mdiThermometerHigh}
+            title="icon"
+            size={"2vmax"}
+            color="#db6b6b"
+          />
+        </div>
+        <div className="containerTemperature">
+          <span className="temperature">{`${bottomTemperature}° C`}</span>
+          <Icon
+            path={mdiThermometerLow}
+            title="icon"
+            size={"2vmax"}
+            color="#799ed0"
+          />
+        </div>
       </div>
       <div className="humidityAndWind">
         <div className="containerIconAndText">
