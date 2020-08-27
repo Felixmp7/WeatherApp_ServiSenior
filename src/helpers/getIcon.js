@@ -3,7 +3,7 @@ import {
   mdiWhiteBalanceSunny,
   mdiWeatherCloudy,
   mdiWeatherPouring,
-  mdiWeatherLightning,
+  mdiMoonWaxingCrescent,
   mdiWeatherSnowy,
 } from "@mdi/js";
 
@@ -21,16 +21,32 @@ const iconRelation = {
     color: "#999",
   },
   Rain: {
-    iconPath: mdiWeatherLightning,
+    iconPath: mdiWeatherPouring,
     color: "#555",
   },
   Snow: {
     iconPath: mdiWeatherSnowy,
     color: "#aaa",
   },
+  Moon: {
+    iconPath: mdiMoonWaxingCrescent,
+    color: "#333",
+  },
 };
 
-export const getIcon = (icon) => {
+export const getIcon = (icon, hour) => {
   const iconTransformed = iconRelation[icon];
+  if (hour) {
+    const nightCondition = hour.includes("PM");
+    const hourExtracted = parseInt(hour.slice(0, 2));
+    console.log(nightCondition);
+    console.log(hourExtracted);
+
+    if (nightCondition && hourExtracted !== 12 && hourExtracted >= 6 && icon === "Clear") {
+      return iconRelation.Moon;
+    } else {
+      return iconTransformed;
+    }
+  }
   return iconTransformed;
 };
