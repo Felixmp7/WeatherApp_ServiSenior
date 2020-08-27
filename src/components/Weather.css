@@ -42,3 +42,10 @@
     font-size: 3.4vmax;
   }
 }
+
+@media screen and (max-width: 425px){
+  .complementName {
+    /* font-size: 28px; */
+    margin-bottom: 20px;
+  }
+}
