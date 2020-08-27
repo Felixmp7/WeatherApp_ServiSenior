@@ -29,4 +29,8 @@ Abre [http://localhost:3000](http://localhost:3000) para ver la aplicación en e
 
 3. Para la implementación de la Gráfica, utilizé los componentes que requerían de: [https://vx-demo.now.sh/](https://vx-demo.now.sh/) <br />
 Sin embargo, no conseguí mucha documentación sobre la implementación de sus componentes, salvo un par de ejemplos en donde también considero que la documentación es ambígua. <br /> <br/>
-De igual forma, logré implementar los gráficos tanto de la variación de temperatura de los 5 dias que retorna el _API de Weather_ cómo la varición de temperatura diaria en un día seleccionado. Con un ligero detalle en cuanto a la escala en el eje **Y** de las gráficas en donde no me muestra ningún valor a pesar de que existe en el array.
+De igual forma, logré implementar los gráficos tanto de la variación de temperatura de los 5 dias que retorna el _API de Weather_ cómo la varición de temperatura diaria en un día seleccionado.
+
+4. Implementé un Responsive básico para desktop, tablets y smartphones.
+
+5. Tuve un inconveniente con el Proveedor de Internet en mi zona, lo cual me afectó fuertemente en cuanto al acceso y a la velocidad de navegación pero sin embargo me sirvió para implementar manejo de errores de respuesta del API mediante **Redux** cuando la conexión es inestable, e incluso implementé un Skeleton para la visualización de los componentes mientras se espera una respuesta retrasada del API.
