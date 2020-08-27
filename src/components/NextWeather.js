@@ -8,7 +8,14 @@ import Button from "@material-ui/core/Button";
 import { getIcon } from "../helpers/getIcon";
 import './NextWeather.css'
 
-const NextWeather = ({ weatherIcon, day, details, hour, setCurrentView, id }) => {
+const NextWeather = ({
+  weatherIcon,
+  day,
+  details,
+  hour,
+  setCurrentView,
+  id
+}) => {
   const classes = useStyles();
 
   const renderWeatherButtonContent = (iconParam, title) => {
@@ -45,8 +52,6 @@ const NextWeather = ({ weatherIcon, day, details, hour, setCurrentView, id }) =>
       )}
     </Grid>
   );
-
- 
 };
 
 NextWeather.propTypes = {
@@ -60,29 +65,18 @@ NextWeather.propTypes = {
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    // border: "1px solid",
-
-    // height: "100%",
     width: "100%",
-    // display: "flex",
   },
   day: {
     height: "100%",
-    // border: '1px solid',
     width: "100%",
-    // display: "flex",
   },
   link: {
     textDecoration: "none",
-    // height: "100%",
-    // border: '1px solid',
     width: "100%",
-    // display: "flex",
   },
   buttonSelected: {
     width: "100%",
-
-    // textAlign: 'center',
     "&:focus": {
       backgroundColor: "#eaeaea",
     },
