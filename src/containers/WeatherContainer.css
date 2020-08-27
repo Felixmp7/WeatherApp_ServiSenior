@@ -24,5 +24,7 @@
 @media screen and (max-width: 600px) {
   .weatherContainer {
     height: 100%;
+    background-color: #f0f8ffcc;
+
   }
 }
