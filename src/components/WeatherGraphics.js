@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Group } from "@vx/group";
-import { AxisLeft, AxisBottom } from "@vx/axis";
+import { AxisBottom } from "@vx/axis";
 import { Bar } from "@vx/shape";
 import { scaleLinear, scaleBand } from "@vx/scale";
 import { connect } from "react-redux";
@@ -77,22 +77,16 @@ class WeatherGraphicsTest extends Component {
     } else {
       return (
         <div className="graphicsContainer">
+          <h3 className="variation">Variation</h3>
+
           <svg className="svgContainer" height={"100%"}>
             <Group top={margin.top} left={margin.left}>
-              <AxisLeft
-                scale={yScale}
-                top={0}
-                left={0}
-                label={"Close Price ($)"}
-                stroke={"#1b1a1e"}
-                tickTextFill={"#1b1a1e"}
-              />
               <AxisBottom
                 scale={xScale}
                 top={yMax}
-                label={"Years"}
-                stroke={"#1b1a1e"}
-                tickTextFill={"#1b1a1e"}
+                stroke={"#aaa"}
+                tickTextFill={"#aaa"}
+                tickClassName="test"
               />
               {data.map((d, i) => {
                 const barHeight = yMax - yPoint(d);
@@ -103,7 +97,7 @@ class WeatherGraphicsTest extends Component {
                     y={yMax - barHeight}
                     height={barHeight}
                     width={xScale.bandwidth()}
-                    fill="#a6c1ee"
+                    fill="#f58747"
                   />
                 );
               })}
