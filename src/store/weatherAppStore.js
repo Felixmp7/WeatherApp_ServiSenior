@@ -6,8 +6,9 @@ import storeReducer from "../reducers/index";
 
 const initialState = {
   weatherData: {
-    dataLoaded: false
-  }
+    dataLoaded: false,
+  },
+  errorInFetchInitialData: false,
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
