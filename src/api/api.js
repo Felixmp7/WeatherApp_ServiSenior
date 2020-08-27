@@ -21,6 +21,6 @@ export const getWeatherData = async () => {
     return response;
   } catch (error) {
     console.log(error);
-    return (response = `ERROR`);
+    return `ERROR`;
   }
 };
