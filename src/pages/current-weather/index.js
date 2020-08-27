@@ -30,7 +30,7 @@ class CurrentWeather extends Component {
     } = this.props.currentWeather;
 
     const { dataLoaded, errorInFetch } = this.props;
-    console.log(errorInFetch)
+    // console.log(errorInFetch)
 
     if (!dataLoaded || errorInFetch) {
       return (
@@ -54,31 +54,32 @@ class CurrentWeather extends Component {
       );
     } else {
       return (
-      <div className="currentWeatherPage">
-        <WeatherContainer>
-          <div className="gridAlignment">
-            <Weather
-              day={day}
-              cityName={cityName}
-              complementName={complementName}
+        <div className="currentWeatherPage">
+          <WeatherContainer>
+            <div className="gridAlignment">
+              <Weather
+                day={day}
+                cityName={cityName}
+                complementName={complementName}
+                getVariationTempForNextDays
+              />
+              <WeatherRightBar
+                icon={weather}
+                topTemperature={topTemperature}
+                bottomTemperature={bottomTemperature}
+                wind={wind}
+                humidity={humidity}
+              />
+            </div>
+            <div className="nextDaysContainer">
+              <h3 className="headerText">Next days weather</h3>
+            </div>
+            <NextWeathersContainer
+              nextDaysWeather
+              nextDaysWeatherData={this.props.nextWeatherData}
             />
-            <WeatherRightBar
-              icon={weather}
-              topTemperature={topTemperature}
-              bottomTemperature={bottomTemperature}
-              wind={wind}
-              humidity={humidity}
-            />
-          </div>
-          <div className="nextDaysContainer">
-            <h3 className="headerText">Next days weather</h3>
-          </div>
-          <NextWeathersContainer
-            nextDaysWeather
-            nextDaysWeatherData={this.props.nextWeatherData}
-          />
-        </WeatherContainer>
-      </div>
+          </WeatherContainer>
+        </div>
     );
     }
     
