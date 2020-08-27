@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import WeatherGraphics from './WeatherGraphics'
-import WeatherGraphics from './WeatherGraphics_Test'
+import WeatherGraphics from './WeatherGraphics'
 import './Weather.css'
 
 const Weather = ({
@@ -9,6 +8,7 @@ const Weather = ({
   cityName,
   complementName,
   getVariationTempForNextDays,
+  nextWeathersPerHours,
 }) => {
   return (
     <div className="cityNameContainer">
@@ -17,6 +17,9 @@ const Weather = ({
       <h4 className="complementName">{complementName}</h4>
       <WeatherGraphics
         getVariationTempForNextDays={getVariationTempForNextDays ? true : false}
+        nextWeathersPerHours={
+          getVariationTempForNextDays ? null : nextWeathersPerHours
+        }
       />
     </div>
   );
