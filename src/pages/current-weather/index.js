@@ -29,12 +29,16 @@ class CurrentWeather extends Component {
       humidity
     } = this.props.currentWeather;
 
-    const { dataLoaded } = this.props;
+    const { dataLoaded, errorInFetch } = this.props;
+    console.log(errorInFetch)
 
-    if (!dataLoaded) {
+    if (!dataLoaded || errorInFetch) {
       return (
         <div className="currentWeatherPage">
           <WeatherContainer>
+            {
+              errorInFetch && <h4>{`Opps parece que ocurrió un problema ):`}</h4>
+            }
             <div className="gridSkeleton">
               <Skeleton variant="rect" width={"70%"} height={"80%"} />
               <Skeleton variant="rect" width={"20%"} height={"80%"} />
@@ -95,10 +99,11 @@ const mapDispatch = dispatch => ({
   fetchWeatherData: () => dispatch(fetchWeatherData())
 })
 
-const mapState = ({ weatherData }) => ({
+const mapState = ({ weatherData, errorInFetchInitialData }) => ({
   currentWeather: getCurrentWeather(weatherData),
   nextWeatherData: getNextWeatherData(weatherData),
   dataLoaded: weatherData.dataLoaded,
+  errorInFetch: errorInFetchInitialData,
 });
 
 export default connect(mapState, mapDispatch)(CurrentWeather);
