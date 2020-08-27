@@ -43,6 +43,12 @@
   }
 }
 
+@media screen and (max-width: 565px){
+  .cityNameContainer {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
 @media screen and (max-width: 425px){
   .complementName {
     /* font-size: 28px; */
