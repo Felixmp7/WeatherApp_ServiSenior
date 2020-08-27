@@ -21,7 +21,7 @@ const WeatherRightBar = ({
   showTime
 }) => {
   const renderWeatherIcon = (iconParam) => {
-    const { iconPath, color } = getIcon(iconParam);
+    const { iconPath, color } = getIcon(iconParam, hour);
     return (
       <div className="weatherIcon">
         <Icon path={iconPath} title="icon" size={'14vmin'} color={color} />
