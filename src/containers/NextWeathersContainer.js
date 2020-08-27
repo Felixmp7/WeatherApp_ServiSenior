@@ -14,7 +14,7 @@ const NextWeathersContainer = ({
 
   return (
     <Paper className={classes.root}>
-      <Grid container spacing={2}>
+      <Grid container className={classes.container} spacing={2}>
         {nextDaysWeather
           ? nextDaysWeatherData.map((day, index) => {
               return (
@@ -50,4 +50,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     // flexWrap: 'wrap'
   },
+  container: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // padding: 0
+  }
 }));

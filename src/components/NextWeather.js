@@ -10,7 +10,7 @@ import './NextWeather.css'
 
 const NextWeather = ({ weatherIcon, day, details, hour, setCurrentView, id }) => {
   const classes = useStyles();
-  
+
   const renderWeatherButtonContent = (iconParam, title) => {
     const { iconPath, color } = getIcon(iconParam);
     return (
@@ -60,28 +60,33 @@ NextWeather.propTypes = {
 
 const useStyles = makeStyles((theme) => ({
   container: {
+    // border: "1px solid",
+
     // height: "100%",
     width: "100%",
-    display: "flex",
+    // display: "flex",
   },
   day: {
-    // height: "100%",
+    height: "100%",
     // border: '1px solid',
     width: "100%",
-    display: "flex",
+    // display: "flex",
   },
   link: {
     textDecoration: "none",
     // height: "100%",
     // border: '1px solid',
     width: "100%",
-    display: "flex",
+    // display: "flex",
   },
   buttonSelected: {
-    '&:focus': {
-      backgroundColor: '#eaeaea'
-    }
-  }
+    width: "100%",
+
+    // textAlign: 'center',
+    "&:focus": {
+      backgroundColor: "#eaeaea",
+    },
+  },
 }));
 
 export default NextWeather;

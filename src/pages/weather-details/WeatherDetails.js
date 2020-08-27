@@ -75,9 +75,7 @@ class WeatherDetails extends Component {
                 showTime
               />
             </div>
-            <div className="nextDaysContainer">
-              <h3 className="headerText">Later on this day</h3>
-            </div>
+            <h3 className="headerText">Later on this day</h3>
             <NextWeathersContainer
               setCurrentView={this.setCurrentView}
               nextWeathersPerHours={this.state.dayWeatherData}

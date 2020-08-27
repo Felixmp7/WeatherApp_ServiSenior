@@ -26,3 +26,12 @@
   /* border: 2px solid; */
 }
 
+@media screen and (max-width: 425px){
+  .detailsGridAlignment {
+    flex-direction: column;
+  }
+  .headerText {
+    font-size: 18px;
+    margin: 20px 0;
+  }
+}
