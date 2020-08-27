@@ -64,6 +64,7 @@ class WeatherDetails extends Component {
                 day={day}
                 cityName={cityName}
                 complementName={complementName}
+                nextWeathersPerHours={this.state.dayWeatherData}
               />
               <WeatherRightBar
                 icon={weather}
