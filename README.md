@@ -5,8 +5,6 @@ Este proyecto fue creado mediante  [Create React App](https://github.com/faceboo
 
 1. Clonar repo con:
 
-In the project directory, you can run:
-
 #### `git clone <path del proyecto>`
 
 2. Luego, instalar dependencias con:
