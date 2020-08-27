@@ -29,6 +29,8 @@ class CurrentWeather extends Component {
       humidity
     } = this.props.currentWeather;
 
+    const backgroundClass = [weather];
+
     const { dataLoaded, errorInFetch } = this.props;
     // console.log(errorInFetch)
 
@@ -54,7 +56,7 @@ class CurrentWeather extends Component {
       );
     } else {
       return (
-        <div className="currentWeatherPage">
+        <div className={`currentWeatherPage ${backgroundClass}`}>
           <WeatherContainer>
             <div className="gridAlignment">
               <Weather
@@ -80,7 +82,7 @@ class CurrentWeather extends Component {
             />
           </WeatherContainer>
         </div>
-    );
+      );
     }
     
     

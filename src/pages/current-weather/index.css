@@ -1,12 +1,27 @@
 .currentWeatherPage {
   width: 100%;
   min-height: 100vh;
-  background-image: url('../../media/backgrounds/5.jpg');
+  background-image: url('../../media/backgrounds/desktop/chile_flag.jpg');
   background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.currentWeatherPage.Clear {
+  background-image: url('../../media/backgrounds/desktop/cleared.jpg');
+  /* background-size: cover; */
+}
+
+.currentWeatherPage.Clouds {
+  background-image: url('../../media/backgrounds/desktop/clear.jpg');
+  /* background-size: cover; */
+}
+
+.currentWeatherPage.Rain {
+  background-image: url('../../media/backgrounds/desktop/rain.jpg');
+  /* background-size: cover; */
 }
 
 .gridAlignment {
@@ -42,6 +57,23 @@
 .errorMessage {
   text-align: center;
   color: #aaa;
+}
+
+@media screen and (max-width: 625px){
+  .currentWeatherPage.Clear {
+    background-image: url('../../media/backgrounds/phone/cleared.jpg');
+    /* background-size: cover; */
+  }
+
+  .currentWeatherPage.Clouds {
+    background-image: url('../../media/backgrounds/phone/clear.jpg');
+    /* background-size: cover; */
+  }
+
+  .currentWeatherPage.Rain {
+    background-image: url('../../media/backgrounds/phone/rain.jpg');
+    /* background-size: cover; */
+  }
 }
 
 @media screen and (max-width: 425px){
