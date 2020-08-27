@@ -55,9 +55,12 @@ class WeatherDetails extends Component {
       hour
     } = this.state.currentWeatherView;
 
+    const backgroundClass = [weather];
+
+
     if (dataLoaded) {
       return (
-        <div className="detailsWeatherPage">
+        <div className={`detailsWeatherPage ${backgroundClass}`}>
           <WeatherContainer>
             <div className="detailsGridAlignment">
               <Weather
