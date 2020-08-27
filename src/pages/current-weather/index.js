@@ -37,7 +37,7 @@ class CurrentWeather extends Component {
         <div className="currentWeatherPage">
           <WeatherContainer>
             {
-              errorInFetch && <h4>{`Opps parece que ocurrió un problema ):`}</h4>
+              errorInFetch && <h4 className="errorMessage">{`Opps parece que ocurrió un problema ):`}</h4>
             }
             <div className="gridSkeleton">
               <Skeleton variant="rect" width={"70%"} height={"80%"} />
