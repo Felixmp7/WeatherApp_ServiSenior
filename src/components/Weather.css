@@ -10,7 +10,7 @@
 
 .weatherday {
   font-size: 22px;
-  color: #aaa;
+  color: #e0bd20;
   font-weight: 100;
 }
 
@@ -47,6 +47,9 @@
   .cityNameContainer {
     width: 100%;
     margin-bottom: 20px;
+  }
+  .weatherday {
+    font-weight: 400;
   }
 }
 @media screen and (max-width: 425px){
