@@ -14,7 +14,7 @@ const NextWeathersContainer = ({
 
   return (
     <Paper className={classes.root}>
-      <Grid container className={classes.container} spacing={2}>
+      <Grid container spacing={2}>
         {nextDaysWeather
           ? nextDaysWeatherData.map((day, index) => {
               return (
@@ -47,9 +47,7 @@ export default NextWeathersContainer;
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '18%',
-    display: 'flex'
+    display: 'flex',
+    // flexWrap: 'wrap'
   },
-  container: {
-    flexGrow: 1,
-  }
 }));
