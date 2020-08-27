@@ -19,7 +19,7 @@ const NextWeather = ({
   const classes = useStyles();
 
   const renderWeatherButtonContent = (iconParam, title) => {
-    const { iconPath, color } = getIcon(iconParam);
+    const { iconPath, color } = getIcon(iconParam, hour);
     return (
       <div className="nextWeatherIcon">
         <h4 className="title">{title}</h4>
