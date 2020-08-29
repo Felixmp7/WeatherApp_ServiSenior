@@ -54,11 +54,6 @@
   /* border: 2px solid; */
 }
 
-.errorMessage {
-  text-align: center;
-  color: #aaa;
-}
-
 @media screen and (max-width: 625px){
   .currentWeatherPage.Clear {
     background-image: url('../../media/backgrounds/phone/cleared.jpg');
