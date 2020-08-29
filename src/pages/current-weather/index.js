@@ -1,14 +1,20 @@
+// Dependencies
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+// Containers
 import WeatherContainer from '../../containers/WeatherContainer';
+import NextWeathersContainer from '../../containers/NextWeathersContainer';
+// Components
 import Weather from '../../components/Weather';
 import WeatherRightBar from '../../components/WeatherRightBar';
-import NextWeathersContainer from '../../containers/NextWeathersContainer';
+import SkeletonLoad from './skeleton/Skeleton';
+import Error from '../../utils/error/Error';
+// Methods
 import { fetchWeatherData } from '../../actions/index';
-import './index.css';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { getCurrentWeather, getNextWeatherData } from '../../selectors/getWeather'
-import Skeleton from "@material-ui/lab/Skeleton";
+// CSS
+import './index.css';
 
 class CurrentWeather extends Component {
 
@@ -31,26 +37,25 @@ class CurrentWeather extends Component {
 
     const backgroundClass = [weather];
 
-    const { dataLoaded, errorInFetch } = this.props;
+    const { dataLoaded, errorInFetch, nextWeatherData } = this.props;
     // console.log(errorInFetch)
 
-    if (!dataLoaded || errorInFetch) {
+    if (!dataLoaded) {
       return (
         <div className="currentWeatherPage">
           <WeatherContainer>
-            {
-              errorInFetch && <h4 className="errorMessage">{`Opps parece que ocurrió un problema ):`}</h4>
-            }
-            <div className="gridSkeleton">
-              <Skeleton variant="rect" width={"70%"} height={"80%"} />
-              <Skeleton variant="rect" width={"20%"} height={"80%"} />
-            </div>
-            <div className="nextSkeleton">
-              <div className="headerSkeleton">
-                <Skeleton variant="text" height={70} />
-              </div>
-            </div>
-            <Skeleton variant="rect" width={'100%'} height={'20%'} />
+          {
+          errorInFetch ? 
+            (
+              <Error
+                message={
+                  "Oops parece que ocurrió un problema al cargar los datos. Por favor, vuelve a intentarlo!"
+                }
+              />
+            ) 
+            : 
+            ( <SkeletonLoad /> )
+          }
           </WeatherContainer>
         </div>
       );
@@ -78,7 +83,7 @@ class CurrentWeather extends Component {
             </div>
             <NextWeathersContainer
               nextDaysWeather
-              nextDaysWeatherData={this.props.nextWeatherData}
+              nextDaysWeatherData={nextWeatherData}
             />
           </WeatherContainer>
         </div>
