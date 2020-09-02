@@ -1,0 +1,16 @@
+.errorBackground {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('../../media/backgrounds/error.jpg');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error404Title {
+  font-size: 44px;
+  text-align: center;
+  color: #777;
+}
