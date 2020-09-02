@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import CurrentWeather from "../pages/current-weather";
 import WeatherDetails from "../pages/weather-details/WeatherDetails";
 import ErrorPage from '../pages/error404/ErrorPage';
